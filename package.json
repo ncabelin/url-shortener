@@ -1,0 +1,11 @@
+{
+  "name": "url-shortener",
+  "version": "0.0.1",
+  "description": "Shortens URL passed into parameter",
+  "main": "server.js",
+  "repository": "https://github.com/ncabelin/url-shortener.git",
+  "author": "Neptune Cabelin",
+  "dependencies": {
+    "express": "~3.2.4"
+  }
+}
