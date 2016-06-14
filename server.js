@@ -53,8 +53,8 @@ app.get('/:url', function(req, res) {
     if (err) {
       res.end('URL not found, please try again');
     } else {
-      console.log(data[0].long_url);
-      res.redirect(data[0].long_url);
+      console.log(data[0].original_url);
+      res.redirect(data[0].original_url);
     }
   });
 });
