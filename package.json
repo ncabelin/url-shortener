@@ -6,6 +6,9 @@
   "repository": "https://github.com/ncabelin/url-shortener.git",
   "author": "Neptune Cabelin",
   "dependencies": {
-    "express": "~3.2.4"
+    "ejs": "^2.4.2",
+    "express": "~3.2.4",
+    "mongodb": "^2.1.18",
+    "mongoose": "^4.4.20"
   }
 }
