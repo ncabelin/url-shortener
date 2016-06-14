@@ -17,8 +17,6 @@ mongoose.connect(dbUrl, function(err) {
   }
 });
 
-var herokuUrl = 'https://teenyurl.herokuapp.com/';
-
 // create schema
 var urlSchema = new mongoose.Schema({
   short_url: String,
@@ -39,7 +37,9 @@ app.get('/new/*', function(req, res) {
     console.log('URL not valid');
   } else {
     console.log('URL you entered is : ' + url);
-    var shorturl = herokuUrl + (Math.floor(Math.random() * (90000)) + 1);
+    var startUrl = req.protocol + '://' + req.get('host') + '/u/';
+    var shorturl = startUrl + (Math.floor(Math.random() * (90000)) + 1);
+    console.log(shorturl);
     Url.create({
       short_url: shorturl,
       original_url: url
@@ -49,9 +49,13 @@ app.get('/new/*', function(req, res) {
   }
 });
 
-app.get('/:shorturl', function(req, res) {
-  var url = herokuUrl + req.params.shorturl;
-  console.log(url);
+app.get('/u/*', function(req, res) {
+  var hostArr = req.get('host').split(':');
+  var host = hostArr[0];
+  var url = req.protocol + '://' + host + req.url;
+  //var urlArr = req.url
+  //var url = startUrl + req.params.shorturl;
+  console.log(url + ' is short URL');
   Url.find( { short_url:url }, function(err, data) {
     if (err) {
       res.end('URL not found, please try again');
