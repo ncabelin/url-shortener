@@ -6,7 +6,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
 var mongoose = require('mongoose');
-var dbUrl = process.env.MONGOLAB_URI;
+var dbUrl = 'mongodb://usemaster:incubus2180@ds021663.mlab.com:21663/supernotes';
 mongoose.connect(dbUrl, function(err) {
   if (err) {
     console.log('Error : ' + err);
