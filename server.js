@@ -46,15 +46,15 @@ app.get('/new/*', function(req, res) {
   }
 });
 
-app.get('/:url', function(req, res) {
+app.get('/:shorturl', function(req, res) {
   var url = 'https://teenyurl.herokuapp.com/' + req.params.url;
   Url.find( { short_url:url }, function(err, data) {
     console.log('Found ' + data);
     if (err) {
       res.end('URL not found, please try again');
     } else {
-      console.log(data[0].original_url);
-      res.redirect(data[0].original_url);
+      console.log(data[0].short_url);
+      res.redirect(data[0].short_url);
     }
   });
 });
