@@ -36,10 +36,10 @@ app.get('/new/*', function(req, res) {
     console.log('URL not valid');
   } else {
     console.log('URL you entered is : ' + url);
-    var shorturl = Math.floor(Math.random() * (90000)) + 1;
+    var shorturl = 'https://teenyurl.herokuapp.com/' + (Math.floor(Math.random() * (90000)) + 1);
     Url.create({
       short_url: shorturl,
-      long_url: url
+      original_url: url
     });
     res.setHeader('Content-Type', 'application/json');
     res.json({'original_url':url,'short_url':shorturl});
