@@ -47,7 +47,7 @@ app.get('/new/*', function(req, res) {
 });
 
 app.get('/:url', function(req, res) {
-  var url = req.params.url;
+  var url = 'https://teenyurl.herokuapp.com/' + req.params.url;
   Url.find( { short_url:url }, function(err, data) {
     console.log('Found ' + data);
     if (err) {
