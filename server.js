@@ -15,11 +15,12 @@ mongoose.connect(dbUrl, function(err) {
   }
 });
 
+var herokuUrl = 'https://teenyurl.herokuapp.com/';
 
 // create schema
 var urlSchema = new mongoose.Schema({
   short_url: String,
-  long_url: String
+  original_url: String
 });
 
 var Url = mongoose.model('Url', urlSchema);
@@ -36,7 +37,7 @@ app.get('/new/*', function(req, res) {
     console.log('URL not valid');
   } else {
     console.log('URL you entered is : ' + url);
-    var shorturl = 'https://teenyurl.herokuapp.com/' + (Math.floor(Math.random() * (90000)) + 1);
+    var shorturl = herokuUrl + (Math.floor(Math.random() * (90000)) + 1);
     Url.create({
       short_url: shorturl,
       original_url: url
@@ -47,14 +48,13 @@ app.get('/new/*', function(req, res) {
 });
 
 app.get('/:shorturl', function(req, res) {
-  var url = 'https://teenyurl.herokuapp.com/' + req.params.url;
+  var url = herokuUrl + req.params.shorturl;
+  console.log(url);
   Url.find( { short_url:url }, function(err, data) {
-    console.log('Found ' + data);
     if (err) {
       res.end('URL not found, please try again');
     } else {
-      console.log(data[0].short_url);
-      res.redirect(data[0].short_url);
+      res.redirect(data[0].original_url);
     }
   });
 });
