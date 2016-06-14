@@ -5,8 +5,10 @@ var app = express();
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+// moogi:AyeshaCurry2290
+
 var mongoose = require('mongoose');
-var dbUrl = 'mongodb://usemaster:incubus2180@ds021663.mlab.com:21663/supernotes';
+var dbUrl = 'mongodb://moogi:AyeshaCurry2290@ds021663.mlab.com:21663/supernotes';
 mongoose.connect(dbUrl, function(err) {
   if (err) {
     console.log('Error : ' + err);
